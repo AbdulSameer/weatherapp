@@ -9,7 +9,7 @@ function Weather({ location }) {
   useEffect(() => {
     if (!location) return; // Skip the API call if location is not set
 
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=${location}&aqi=no`;
+    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6b8ea123bb004345b9d194504232012&q=${location}&aqi=no`;
 
     axios
       .get(apiUrl)
