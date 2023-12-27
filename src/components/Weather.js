@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Weather({ location }) {
-  const [locationData, setLocationData] = useState();
+  const [locationData, setLocationData] = useState("");
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!location) return; // Skip the API call if location is not set
@@ -15,28 +15,24 @@ function Weather({ location }) {
       .get(apiUrl)
       .then((res) => {
         setLocationData(res.data);
-        setLoading(false);
+        setLoading(true);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
   }, [location]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  // Extract the location name from the locationData
   const cityName = locationData?.location?.name || "Unknown Location";
-
-  return (
-    <div>
-      <h2>{cityName}</h2> {/* Display the location name */}
-      <p>Local Time: {locationData.location.localtime}</p>
-      <p>Temperature: {locationData.current.temp_c}°C</p>
-      <p>Condition: {locationData.current.condition.text}</p>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="text-center">
+        <h2>{cityName}</h2> {/* Display the location name */}
+        <p>Local Time: {locationData.location.localtime}</p>
+        <p>Temperature: {locationData.current.temp_c}°C</p>
+        <p>Condition: {locationData.current.condition.text}</p>
+      </div>
+    );
+  if (error) return <div className="text-center">Error: Please enter the correct location</div>;
 }
 
 export default Weather;

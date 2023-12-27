@@ -15,7 +15,7 @@ function App() {
     <>
       <Banner />
       <LocationField onLocationChange={handleLocationChange} />
-      <Weather location={location} /> {/* Pass location prop to Weather component */}
+      <Weather location={location} />
     </>
   );
 }

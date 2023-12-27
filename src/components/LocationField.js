@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function LocationField({ onLocationChange }) {
-    const [location, setLocation] = useState("");
+    const [location, setLocation] = useState([]);
 
     const handleChange = (e) => {
         const value = e.target.value;
